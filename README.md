@@ -109,9 +109,14 @@ Open PowerShell as an *Administrator*.
 <!-- ADDITIONAL STEPS FOR EXTRA SECURITY-->
 ## Additional Steps
 1. Modify Edge and Chrome shortcuts to make them open in Private mode by default:
-```
-
-3. 
+  ```
+  .\UpdateShortcut.ps1 -ShortcutPath "%ALLUSERSPROFILE%\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk" -NewTargetPath "C:\path\to\msedge.exe --inprivate"
+  .\UpdateShortcut.ps1 -ShortcutPath "%ALLUSERSPROFILE%\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk" -NewTargetPath "C:\path\to\chrome.exe --incognito"
+  ```
+2. Create new File Explorer shortcut in Start Menu
+  ```
+  .\UpdateShortcut.ps1 -ShortcutPath "%ALLUSERSPROFILE%\Microsoft\Windows\Start Menu\Programs\explorer.lnk" -NewTargetPath "%WINDIR%\explorer.exe"
+  ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
