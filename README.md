@@ -38,8 +38,6 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -48,63 +46,59 @@ This project incorporates many features into a regular PC to make it secure enou
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
- 
-<a href="https://learn.microsoft.com/en-us/powershell/" target="_blank" style="text-decoration: none; color: inherit; display: inline-block; text-align: center;">
-  <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path fill='currentColor' d='M23.181 2.974c.568 0 .923.463.792 1.035l-3.659 15.982c-.13.572-.697 1.035-1.265 1.035H.819c-.568 0-.923-.463-.792-1.035L3.686 4.009c.13-.572.697-1.035 1.265-1.035zm-8.375 9.346c.251-.394.227-.905-.09-1.243L9.122 5.125c-.38-.404-1.037-.407-1.466-.003c-.429.402-.468 1.056-.088 1.46l4.662 4.96v.11l-7.42 5.374c-.45.327-.533.977-.187 1.453s.991.597 1.44.27l8.229-5.91c.28-.196.438-.365.514-.52zm-2.796 4.399a.93.93 0 0 0-.934.923c0 .51.418.923.934.923h4.433a.93.93 0 0 0 .934-.923a.93.93 0 0 0-.934-.923z'/></svg>" alt="PowerShell Logo" style="vertical-align: middle;">
-  <div style="margin-top: 4px; font-size: 0.9em; color: black;">PowerShell</div>
-</a>
-
-
-* [![cfcgf][PowerShell-shield]][PowerShell-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![PowerShell][PowerShell-shield]][PowerShell-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Requirements:
+1. Windows 11 PC
+2. An account with Administrative access on the PC
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
+Some packages need to be installed first.
+
+Open PowerShell as an *Administrator*.
+
+* PowerShell
+  ```ps
+  Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+  Install-PackageProvider -Name NuGet -Force
+  Install-Module -Name GCDialog -Force -Scope AllUsers
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
+
+* Command Prompt
    ```sh
    git clone https://github.com/Skilledgamer101/uts-sd-kiosk.git
    ```
-3. Install NPM packages
+2. Run the following command under *Administrator* Command Prompt
+
+* Command Prompt
    ```sh
-   npm install
+   cd path/to/cloned/repo
+   psexec.exe -i -s powershell.exe
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Click 'Accept' in the popup window.
+4. A new window should open titled 'PsExec.exe'. Enter the following commands in it:
+
+* PowerShell
+  ```ps
+  cd path/to/cloned/repo
+  .\setup_kiosk.ps1
    ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin Skilledgamer101/uts-sd-kiosk
-   git remote -v # confirm the changes
-   ```
+5. You should receive a message like this:
+  ```
+  Successfully applied Assigned Access Configuration
+  ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
