@@ -109,6 +109,7 @@ Open PowerShell as an *Administrator*.
   Register-ScheduledTask -Xml (Get-Content -Path "C:\path\to\task.xml" -Raw) -TaskName "Clear Everything"
   ```
 > Note: You will have to change the "Arguments" tag in the XML (at the very bottom) to point to the path of the `clear_everything.ps1` file in this repo.
+
 > Note: The Task Scheduler application can be used to import XML as well.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
