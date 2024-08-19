@@ -42,7 +42,7 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
-This project incorporates many features into a regular PC to make it secure enough for public use. It allows a (customizable) list of certain apps, opens browsers in Private mode by default, prevents access to files in C drive, wipes out all data on the computer if it is left idle for 15 minutes, and much more.
+This project incorporates many features into a regular PC to make it secure enough for public use. It allows a (customizable) list of certain apps, opens browsers in Private mode by default, prevents access to files in the hard drive, wipes out all data on the computer if it is left idle for 15 minutes, and much more.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -91,7 +91,7 @@ Open PowerShell as an *Administrator*.
 4. A new window should open titled 'PsExec.exe'. Enter the following commands in it:
 
 * PowerShell
-  ```sh
+  ```PowerShell
   cd path\to\cloned\repo
   .\setup_kiosk.ps1
    ```
@@ -100,6 +100,7 @@ Open PowerShell as an *Administrator*.
   Successfully applied Assigned Access Configuration.
   ```
 6. Set the `clear_everything.ps1` file to run in the background:
+  * PowerShell
   ```PowerShell
   Register-ScheduledTask -Xml (Get-Content -Path "C:\path\to\task.xml" -Raw) -TaskName "Clear Everything"
   ```
@@ -109,14 +110,21 @@ Open PowerShell as an *Administrator*.
 <!-- ADDITIONAL STEPS FOR EXTRA SECURITY-->
 ## Additional Steps
 1. Modify Edge and Chrome shortcuts to make them open in Private mode by default:
-  ```
+  * PowerShell
+  ```PowerShell
   .\UpdateShortcut.ps1 -ShortcutPath "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk" -NewTargetPath "C:\path\to\msedge.exe" -Arguments "--inprivate"
   .\UpdateShortcut.ps1 -ShortcutPath "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk" -NewTargetPath "C:\path\to\chrome.exe" -Arguments "--incognito"
   ```
 2. Create new File Explorer shortcut in Start Menu
-  ```
+  * PowerShell
+  ```PowerShell
   .\UpdateShortcut.ps1 -ShortcutPath "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\explorer.lnk" -NewTargetPath "%WINDIR%\explorer.exe"
   ```
+3. Restrict access to hard drive
+  - Press Win + R. Type mmc.
+  - File > Add/Remove Snap-In > Group Policy Object Editor > Browse > kioskUser0 > Finish
+  - User Configuration > Administrative Templates > Windows Components > File Explorer > Prevent access to drives from My Computer
+  - Select whichever drives you would like to restrict access to 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
