@@ -144,6 +144,9 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\Configuration" 
 ### Specific Allowed Apps on Homepage
 ![Kiosk Apps Screen Shot][apps-screenshot]
 
+### Scheduled Data Clearing
+![Restart Screen Shot][restart-screenshot]
+
 ### Trying to Access A File in Hard Drive
 ![File Explorer Screen Shot][explorer-screenshot]
 
@@ -184,3 +187,4 @@ GCDialog was used to display a countdown timer dialog in the `clear_everything.p
 [apps-screenshot]: images/apps.png
 [explorer-screenshot]: images/explorer.png
 [blocked-app-screenshot]: images/blocked-app.png
+[restart-screenshot]: images/restart.png
