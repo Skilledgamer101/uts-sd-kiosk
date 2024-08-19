@@ -166,7 +166,7 @@ Project Link: [https://github.com/Skilledgamer101/uts-sd-kiosk](https://github.c
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [GCDialog](https://github.com/grantcarthew/ps-gcpowershell)
+* [GCDialog](https://github.com/grantcarthew/ps-gcpowershell) <br />
 GCDialog was used to display a countdown timer dialog in the `clear_everything.ps1` file.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
