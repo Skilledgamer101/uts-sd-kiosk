@@ -42,7 +42,7 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
-This project incorporates many features into a regular PC to make it secure enough for public use. It allows a (customizable) list of certain apps, opens browsers in Private mode by default, prevents access to files in C drive, and wipes out all data on the computer if it is left idle for 15 minutes.
+This project incorporates many features into a regular PC to make it secure enough for public use. It allows a (customizable) list of certain apps, opens browsers in Private mode by default, prevents access to files in C drive, wipes out all data on the computer if it is left idle for 15 minutes, and much more.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
