@@ -1,6 +1,7 @@
 param (
     [string]$ShortcutPath,
-    [string]$NewTargetPath
+    [string]$NewTargetPath,
+    [string]$Arguments = ""
 )
 
 # Create a WScript.Shell COM object
@@ -11,6 +12,10 @@ $shortcut = $shell.CreateShortcut($ShortcutPath)
 
 # Update the target path of the shortcut
 $shortcut.TargetPath = $NewTargetPath
+
+if ($Arguments) {
+    $shortcut.Arguments = $Arguments
+}
 
 # Save the changes
 $shortcut.Save()
