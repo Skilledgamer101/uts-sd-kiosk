@@ -39,7 +39,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Kiosk Homepage Screen Shot][homepage-screenshot]]
+![Kiosk Homepage Screen Shot][homepage-screenshot]
 This project incorporates many features into a regular PC to make it secure enough for public use. It allows a (customizable) list of certain apps, opens browsers in Private mode by default, prevents access to files in the hard drive, wipes out all data on the computer if it is left idle for 15 minutes, and much more. It utilizes a combination of Microsoft's Assigned Access feature on Windows, custom PowerShell scripts in the background, and Group Policy changes.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -102,7 +102,7 @@ Open PowerShell as an *Administrator*.
   Successfully applied Assigned Access Configuration.
   ```
 
-> Note: For the next step, you will have to change the "Arguments" tag (at the very bottom) in the `Clear Everything.xml` to point to the path of the `clear_everything.ps1` file in this repo.
+> Note: For the next step, you will have to change the "Arguments" tag (at the very bottom) in the `Clear Everything.xml` file to point to the path of the `clear_everything.ps1` file in this repo.
 
 6. Set the `clear_everything.ps1` file to run in the background:
   * PowerShell
@@ -142,13 +142,13 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\Configuration" 
 ## Usage
 
 ### Specific Allowed Apps on Homepage
-[![Kiosk Apps Screen Shot][apps-screenshot]]
+![Kiosk Apps Screen Shot][apps-screenshot]
 
 ### Trying to Access A File in Hard Drive
-[![File Explorer Screen Shot][explorer-screenshot]]
+![File Explorer Screen Shot][explorer-screenshot]
 
 ### Trying to Access an App Not on Allowed List
-[![Blocked App Screen Shot][blocked-app-screenshot]]
+![Blocked App Screen Shot][blocked-app-screenshot]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
