@@ -29,6 +29,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li><a href="#additional-steps">Additional Steps</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -95,15 +96,20 @@ Open PowerShell as an *Administrator*.
   cd path\to\cloned\repo
   .\setup_kiosk.ps1
    ```
+> Note: Take a look at the `setup_kiosk.ps1` file in this repo. Make sure the paths match with the ones on your PC, and feel free to add/remove any paths.
+
 5. You should receive a message like this:
   ```
   Successfully applied Assigned Access Configuration.
   ```
+
 6. Set the `clear_everything.ps1` file to run in the background:
   * PowerShell
   ```PowerShell
   Register-ScheduledTask -Xml (Get-Content -Path "C:\path\to\task.xml" -Raw) -TaskName "Clear Everything"
   ```
+> Note: You will have to change the "Arguments" tag in the XML (at the very bottom) to point to the path of the `clear_everything.ps1` file in this repo.
+> Note: The Task Scheduler application can be used to import XML as well.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
