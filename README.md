@@ -42,7 +42,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Kiosk Homepage Screen Shot][homepage-screenshot]]
 This project incorporates many features into a regular PC to make it secure enough for public use. It allows a (customizable) list of certain apps, opens browsers in Private mode by default, prevents access to files in the hard drive, wipes out all data on the computer if it is left idle for 15 minutes, and much more.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -110,7 +110,7 @@ Open PowerShell as an *Administrator*.
   ```
 > Note: You will have to change the "Arguments" tag in the XML (at the very bottom) to point to the path of the `clear_everything.ps1` file in this repo.
 
-> Note: The Task Scheduler application can be used to import XML as well.
+> Note: The Task Scheduler application can be used to set the task as well ('Import Task' > Select the `Clear Everything.xml` file).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -132,6 +132,12 @@ Open PowerShell as an *Administrator*.
   b. File > Add/Remove Snap-In > Group Policy Object Editor > Browse > kioskUser0 > Finish <br />
   c. User Configuration > Administrative Templates > Windows Components > File Explorer > Prevent access to drives from My Computer <br />
   d. Select whichever drives you would like to restrict access to <br />
+
+4. (Optional) Set Shared Computer Activation for Microsoft Office products.
+* Command Prompt
+```sh
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\Configuration" /v SharedComputerLicensing /t REG_SZ /d "1" /f
+```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -194,13 +200,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - mansoorlunawadi@yahoo.ca
+Mansoor Lunawadi - mansoorlunawadi@yahoo.ca
 
 Project Link: [https://github.com/Skilledgamer101/uts-sd-kiosk](https://github.com/Skilledgamer101/uts-sd-kiosk)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
@@ -230,7 +234,7 @@ Project Link: [https://github.com/Skilledgamer101/uts-sd-kiosk](https://github.c
 [license-url]: https://github.com/Skilledgamer101/uts-sd-kiosk/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/mansoor-lunawadi
-[product-screenshot]: images/screenshot.png
+[homepage-screenshot]: images/homepage.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
