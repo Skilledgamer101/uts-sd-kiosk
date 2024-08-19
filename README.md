@@ -74,35 +74,44 @@ Open PowerShell as an *Administrator*.
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repo:
 
 * Command Prompt
    ```sh
    git clone https://github.com/Skilledgamer101/uts-sd-kiosk.git
    ```
-2. Run the following command under *Administrator* Command Prompt
+2. Run the following command under *Administrator* Command Prompt:
 
 * Command Prompt
    ```sh
-   cd path/to/cloned/repo
+   cd path\to\cloned\repo
    psexec.exe -i -s powershell.exe
    ```
 3. Click 'Accept' in the popup window.
 4. A new window should open titled 'PsExec.exe'. Enter the following commands in it:
 
 * PowerShell
-  ```PowerShell
-  cd path/to/cloned/repo
+  ```sh
+  cd path\to\cloned\repo
   .\setup_kiosk.ps1
    ```
 5. You should receive a message like this:
   ```
-  Successfully applied Assigned Access Configuration
+  Successfully applied Assigned Access Configuration.
+  ```
+6. Set the `clear_everything.ps1` file to run in the background:
+  ```PowerShell
+  Register-ScheduledTask -Xml (Get-Content -Path "C:\path\to\task.xml" -Raw) -TaskName "Clear Everything"
   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- ADDITIONAL STEPS FOR EXTRA SECURITY-->
+## Additional Steps
+1. Modify Edge and Chrome shortcuts to make them open in Private mode by default:
+```
 
+3. 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
