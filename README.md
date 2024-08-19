@@ -66,7 +66,7 @@ Some packages need to be installed first.
 Open PowerShell as an *Administrator*.
 
 * PowerShell
-  ```ps
+  ```PowerShell
   Set-ExecutionPolicy -ExecutionPolicy Unrestricted
   Install-PackageProvider -Name NuGet -Force
   Install-Module -Name GCDialog -Force -Scope AllUsers
@@ -91,7 +91,7 @@ Open PowerShell as an *Administrator*.
 4. A new window should open titled 'PsExec.exe'. Enter the following commands in it:
 
 * PowerShell
-  ```ps
+  ```PowerShell
   cd path/to/cloned/repo
   .\setup_kiosk.ps1
    ```
