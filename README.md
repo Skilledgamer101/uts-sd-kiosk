@@ -131,6 +131,8 @@ Open PowerShell as an *Administrator*.
   b. File > Add/Remove Snap-In > Group Policy Object Editor > Browse > kioskUser0 > Finish <br />
   c. User Configuration > Administrative Templates > Windows Components > File Explorer > Prevent access to drives from My Computer <br />
   d. Select whichever drives you would like to restrict access to <br />
+  e. User Configuration > Administrative Templates > Windows Components > File Explorer > Prevent users from adding files to the root of their User Folder <br />
+  f. Select 'Enabled'
 
 4. (Optional) Set Shared Computer Activation for Microsoft Office products.
 * Command Prompt
