@@ -93,7 +93,7 @@ Open PowerShell as an *Administrator*.
 
 * PowerShell
   ```PowerShell
-  cd path\to\cloned\repo
+  cd uts-sd-kiosk
   .\setup_kiosk.ps1
    ```
 
