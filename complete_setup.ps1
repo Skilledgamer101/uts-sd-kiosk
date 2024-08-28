@@ -260,7 +260,7 @@ reg add HKLM\SOFTWARE\Microsoft\Office\ClickToRun\Configuration /v O365ProPlusRe
 reg unload "HKU\$hiveName"
 
 # Inform the user to log off and log back in for changes to take effect
-Write-Host "Registry settings for kioskUser0 have been updated. Please log off and log back in for the changes to take effect."
+Write-Host "Registry settings for kioskUser0 have been updated. Please restart for the changes to take effect."
 
 Write-Host "Successfully Set Group Policies and Reg Values"
 Write-Host "-------------------------------------------------------------------"
