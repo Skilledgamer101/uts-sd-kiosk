@@ -283,6 +283,7 @@ Write-Host "Successfully Set Group Policies and Reg Values"
 Write-Host "-------------------------------------------------------------------"
 
 Stop-Transcript
+Start-Sleep -Seconds 60
 
 
     
