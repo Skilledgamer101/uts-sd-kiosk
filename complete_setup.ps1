@@ -221,15 +221,9 @@ Write-Host "-------------------------------------------------------------------"
 ###############################################################################################################################################################################
 
 Write-Host "-------------------------------------------------------------------"
-Write-Host "Setting Group Policies and Reg Values"
+Write-Host "Setting Group Policies and Reg Values for kioskUser0"
 
-# Install RSAT Tools
-Add-WindowsCapability -Online -Name Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0
-
-# Import the Group Policy module
-Import-Module GroupPolicy
-
-# Step 1: Detect USB drives
+# Detect USB drives
 $usbDrives = Get-WmiObject -Query "Select * from Win32_LogicalDisk Where DriveType = 2"
 
 # Calculate the bitmask for the USB drives
@@ -241,24 +235,32 @@ foreach ($drive in $usbDrives) {
     $restrictedDrives += $bitValue
 }
 
-# Step 2: Create or load the Local Group Policy Object (LGPO) for 'kioskUser0'
-$gpo = Get-GPO -Name "LocalGPO" -ErrorAction SilentlyContinue
+# Define the path to the user's registry hive
+$userRegistryPath = "C:\Users\kioskUser0"
+$ntuserDatPath = Join-Path -Path $userRegistryPath -ChildPath "NTUSER.DAT"
 
-if (-not $gpo) {
-    $gpo = New-GPO -Name "LocalGPO"
+# Load the user's registry hive
+$hiveName = "KioskUser0Hive"
+reg load "HKU\$hiveName" $ntuserDatPath
+
+# Define registry paths and values
+$regPath = "HKU\$hiveName\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"
+
+# Create registry path if it doesn't exist
+if (-not (Test-Path $regPath)) {
+    New-Item -Path $regPath -Force
 }
 
-# Step 3: Prevent access to USB drives from My Computer
-Set-GPRegistryValue -Name "LocalGPO" -Key "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -ValueName "NoViewOnDrive" -Type DWord -Value $restrictedDrives -TargetUser "kioskUser0"
+# Set the registry values using reg command
+reg add "$regPath" /v "NoViewOnDrive" /t REG_DWORD /d $restrictedDrives /f
+reg add "$regPath" /v "NoCreateRoot" /t REG_DWORD /d 1 /f
+reg add HKLM\SOFTWARE\Microsoft\Office\ClickToRun\Configuration /v O365ProPlusRetail.DeviceBasedLicensing /t REG_SZ /d 1
 
-# Step 4: Prevent users from adding files to the root of their User Folder
-Set-GPRegistryValue -Name "LocalGPO" -Key "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -ValueName "NoCreateRoot" -Type DWord -Value 1 -TargetUser "kioskUser0"
+# Unload the user's registry hive
+reg unload "HKU\$hiveName"
 
-# Step 5: Apply the GPO to the local user
-Invoke-GPUpdate -Target "kioskUser0"
-
-# Turn on Device based licensing reg key
-New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration" -Name "O365ProPlusRetail.DeviceBasedLicensing" -PropertyType String -Value "1" -Force
+# Inform the user to log off and log back in for changes to take effect
+Write-Host "Registry settings for kioskUser0 have been updated. Please log off and log back in for the changes to take effect."
 
 Write-Host "Successfully Set Group Policies and Reg Values"
 Write-Host "-------------------------------------------------------------------"
