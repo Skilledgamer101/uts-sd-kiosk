@@ -26,10 +26,8 @@ if ((Get-ExecutionPolicy -Scope Process) -ne 'Unrestricted') {
     Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList $CommandLine
     Exit
 }
-$dir = "$($env:ProgramData)\InstallLogs\PostInstall\"
-New-Item $dir -ItemType Directory -Force
-$log = "$dir\install.log"
-Start-Transcript $log
+
+Start-Transcript
 
 ###############################################################################################################################################################################
 ### Install Chocolatey
