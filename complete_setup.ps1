@@ -113,6 +113,10 @@ Write-Host "Cloned git kiosk repo"
 Set-Location uts-sd-kiosk
 Write-Host "Currently in location" $PWD
 
+# Move clear_everything.ps1 file to Kiosk Scripts directory so kioskUser0 can access it
+New-Item -Path "C:\Kiosk Scripts" -ItemType Directory
+Move-Item -Path "C:\Users\Administrator\uts-sd-kiosk\clear_everything.ps1" -Destination "C:\Kiosk Scripts"
+
 ###############################################################################################################################################################################
 ### Set Assigned Access
 ###############################################################################################################################################################################
@@ -175,7 +179,7 @@ Write-Host "Setting clear everything task"
 Write-Host "Updating XML file"
 # Define the path to your XML file
 $xmlPath = "$PWD\Clear Everything.xml"
-$scriptPath = "$PWD\clear_everything.ps1"
+$scriptPath = "C:\Kiosk Scripts\clear_everything.ps1"
 
 # Load the XML file
 [xml]$xmlContent = Get-Content -Path $xmlPath
