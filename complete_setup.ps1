@@ -115,7 +115,7 @@ Write-Host "Currently in location" $PWD
 
 # Move clear_everything.ps1 file to Kiosk Scripts directory so kioskUser0 can access it
 New-Item -Path "C:\Kiosk Scripts" -ItemType Directory
-Move-Item -Path "C:\Users\Administrator\uts-sd-kiosk\clear_everything.ps1" -Destination "C:\Kiosk Scripts"
+Move-Item -Path "$PWD\clear_everything.ps1" -Destination "C:\Kiosk Scripts"
 
 ###############################################################################################################################################################################
 ### Set Assigned Access
