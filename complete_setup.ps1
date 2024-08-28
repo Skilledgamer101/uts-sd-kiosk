@@ -265,6 +265,10 @@ powercfg -change -standby-timeout-dc 0
 powercfg -change -monitor-timeout-ac 0
 powercfg -change -monitor-timeout-dc 0
 
+# Add uts sd accounts as local admins
+Add-LocalGroupMember -Group "Administrators" -Member "ADS\utssdf1"
+Add-LocalGroupMember -Group "Administrators" -Member "ADS\utssdf2"
+
 # Unload the user's registry hive
 reg unload "HKU\$hiveName"
 
