@@ -223,6 +223,9 @@ Write-Host "-------------------------------------------------------------------"
 Write-Host "-------------------------------------------------------------------"
 Write-Host "Setting Group Policies and Reg Values"
 
+# Install RSAT Tools
+Add-WindowsCapability -Online -Name Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0
+
 # Import the Group Policy module
 Import-Module GroupPolicy
 
