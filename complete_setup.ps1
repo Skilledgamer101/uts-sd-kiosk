@@ -223,18 +223,6 @@ Write-Host "-------------------------------------------------------------------"
 Write-Host "-------------------------------------------------------------------"
 Write-Host "Setting Group Policies and Reg Values for kioskUser0"
 
-# Detect USB drives
-$usbDrives = Get-WmiObject -Query "Select * from Win32_LogicalDisk Where DriveType = 2"
-
-# Calculate the bitmask for the USB drives
-$restrictedDrives = 0
-
-foreach ($drive in $usbDrives) {
-    $driveLetter = $drive.DeviceID.Substring(0, 1).ToUpper()
-    $bitValue = 1 -shl ([byte][char]$driveLetter - [byte][char]'A')
-    $restrictedDrives += $bitValue
-}
-
 # Define the path to the user's registry hive
 $userRegistryPath = "C:\Users\kioskUser0"
 $ntuserDatPath = Join-Path -Path $userRegistryPath -ChildPath "NTUSER.DAT"
@@ -252,9 +240,30 @@ if (-not (Test-Path $regPath)) {
 }
 
 # Set the registry values using reg command
-reg add "$regPath" /v "NoViewOnDrive" /t REG_DWORD /d $restrictedDrives /f
+
+# No creating files in root folders
 reg add "$regPath" /v "NoCreateRoot" /t REG_DWORD /d 1 /f
-reg add HKLM\SOFTWARE\Microsoft\Office\ClickToRun\Configuration /v O365ProPlusRetail.DeviceBasedLicensing /t REG_SZ /d 1
+
+# Turn off update notifications
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v NoAutoUpdate /t REG_DWORD /d 2 /f
+
+# Auto download updates and schedule their install outside office hours
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v AUOptions /t REG_DWORD /d 4 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v ScheduledInstallDay /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v ScheduledInstallTime /t REG_DWORD /d 3 /f
+
+# Device based licensing
+reg add "HKLM\SOFTWARE\Microsoft\Office\ClickToRun\Configuration" /v O365ProPlusRetail.DeviceBasedLicensing /t REG_SZ /d 1
+
+# Stop Edge from auto creating shortcuts on desktop
+reg add "HKLM\SOFTWARE\Policies\Microsoft\EdgeUpdate" /v CreateDesktopShortcutDefault /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\EdgeUpdate" /v RemoveDesktopShortcutDefault /t REG_DWORD /d 1 /f
+
+# Set PC to never sleep/turn off display
+powercfg -change -standby-timeout-ac 0
+powercfg -change -standby-timeout-dc 0
+powercfg -change -monitor-timeout-ac 0
+powercfg -change -monitor-timeout-dc 0
 
 # Unload the user's registry hive
 reg unload "HKU\$hiveName"
