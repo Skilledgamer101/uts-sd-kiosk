@@ -117,6 +117,14 @@ Write-Host "Currently in location" $PWD
 New-Item -Path "C:\Kiosk Scripts" -ItemType Directory
 Move-Item -Path "$PWD\clear_everything.ps1" -Destination "C:\Kiosk Scripts"
 
+# Set Read & Execute permissions for kioskUser0
+$destinationFile = "C:\Kiosk Scripts\clear_everything.ps1"
+$acl = Get-Acl $destinationFile
+$permission = "$env:COMPUTERNAME\kioskUser0","ReadAndExecute","Allow"
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($permission)
+$acl.SetAccessRule($accessRule)
+Set-Acl -Path $destinationFile -AclObject $acl
+
 ###############################################################################################################################################################################
 ### Set Assigned Access
 ###############################################################################################################################################################################
