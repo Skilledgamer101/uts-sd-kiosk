@@ -252,6 +252,12 @@ function Remove-UserProfile {
     }
 }
 
+# Function to clear Recycle Bin
+function Remove-RecycleBin {
+    Write-Host "Clearing Recycle Bin..."
+    Clear-RecycleBin -Force -ErrorAction SilentlyContinue
+}
+
 # Function to restart the computer
 function Restart-PC {
     Restart-Computer -Force
@@ -265,6 +271,7 @@ if ($response -ne "Cancel") {
     Close-AllApplications
     Exit-AllBGProcesses
     Remove-UserProfile
+    Remove-RecycleBin
     Restart-PC
 }
 
